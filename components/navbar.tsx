@@ -41,13 +41,22 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/#about" className="text-sm font-medium hover:text-emerald-500 transition-colors">
+            <Link href="/#about" className={cn(
+              "text-sm font-medium hover:text-emerald-500 transition-colors",
+              isScrolled ? "text-foreground" : "text-white"
+            )}>
               {t("nav.about")}
             </Link>
-            <Link href="/#services" className="text-sm font-medium hover:text-emerald-500 transition-colors">
+            <Link href="/#services" className={cn(
+              "text-sm font-medium hover:text-emerald-500 transition-colors",
+              isScrolled ? "text-foreground" : "text-white"
+            )}>
               {t("nav.services")}
             </Link>
-            <Link href="/#references" className="text-sm font-medium hover:text-emerald-500 transition-colors">
+            <Link href="/#references" className={cn(
+              "text-sm font-medium hover:text-emerald-500 transition-colors",
+              isScrolled ? "text-foreground" : "text-white"
+            )}>
               {t("nav.references")}
             </Link>
             <Link
@@ -55,6 +64,7 @@ export function Navbar() {
               className={cn(
                 "text-sm font-medium hover:text-emerald-500 transition-colors",
                 pathname === "/contact" && "text-emerald-500",
+                isScrolled ? "text-foreground" : "text-white"
               )}
             >
               {t("nav.contact")}
@@ -88,7 +98,9 @@ export function Navbar() {
           <div className="flex md:hidden items-center space-x-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className={cn(
+                  isScrolled ? "text-foreground" : "text-white"
+                )}>
                   <Globe className="h-5 w-5" />
                   <span className="sr-only">Toggle language</span>
                 </Button>
@@ -114,21 +126,30 @@ export function Navbar() {
           <nav className="md:hidden pt-4 pb-2 space-y-2">
             <Link
               href="/#about"
-              className="block py-2 text-sm font-medium hover:text-emerald-500 transition-colors"
+              className={cn(
+                "block py-2 text-sm font-medium hover:text-emerald-500 transition-colors",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("nav.about")}
             </Link>
             <Link
               href="/#services"
-              className="block py-2 text-sm font-medium hover:text-emerald-500 transition-colors"
+              className={cn(
+                "block py-2 text-sm font-medium hover:text-emerald-500 transition-colors",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("nav.services")}
             </Link>
             <Link
               href="/#references"
-              className="block py-2 text-sm font-medium hover:text-emerald-500 transition-colors"
+              className={cn(
+                "block py-2 text-sm font-medium hover:text-emerald-500 transition-colors",
+                isScrolled ? "text-foreground" : "text-white"
+              )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t("nav.references")}
@@ -138,6 +159,7 @@ export function Navbar() {
               className={cn(
                 "block py-2 text-sm font-medium hover:text-emerald-500 transition-colors",
                 pathname === "/contact" && "text-emerald-500",
+                isScrolled ? "text-foreground" : "text-white"
               )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
