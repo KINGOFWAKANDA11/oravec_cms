@@ -190,14 +190,6 @@ export function Hero() {
               </h1>
             </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2, duration: 0.8 }}
-              className="text-zinc-300 max-w-md"
-            >
-              {t("hero.description")}
-            </motion.p>
 
             {/* Typing animation for services */}
             <motion.div
