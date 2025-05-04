@@ -92,7 +92,7 @@ export function Footer() {
 
         <div className="mt-12 pt-6 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-zinc-400 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Ľub Oravec. {t("footer.rights")}
+            &copy; {new Date().getFullYear()} Ľubo Oravec. {t("footer.rights")}
           </p>
 
           <div className="flex items-center space-x-6">
