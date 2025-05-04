@@ -203,7 +203,7 @@ export function References() {
               className="bg-zinc-800 p-8 rounded-lg absolute w-full"
             >
               <Quote className="h-8 w-8 text-emerald-500 mb-4" />
-              <p className="text-zinc-300 mb-6 text-lg">{testimonials[currentIndex].testimonial}</p>
+              <p className="text-zinc-300 mb-6 sm:text-lg text-sm">{testimonials[currentIndex].testimonial}</p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
                   {testimonials[currentIndex].name.charAt(0)}
