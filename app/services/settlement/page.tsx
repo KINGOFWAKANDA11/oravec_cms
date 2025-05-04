@@ -35,10 +35,9 @@ export default function SettlementPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100/10 backdrop-blur-sm rounded-full mb-6">
                 <Home className="h-8 w-8 text-emerald-500" />
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Real Estate Settlement</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Vysporiadanie nehnuteľností</h1>
               <p className="text-xl text-zinc-300 mb-8">
-                Complete handling of property settlements, including documentation, legal compliance, and transaction
-                management.
+                Kompletné spracovanie vysporiadania majetku vrátane dokumentácie, právnej zhody a manažmentu transakcií.
               </p>
             </div>
           </div>
@@ -49,23 +48,23 @@ export default function SettlementPage() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-zinc-900 mb-6">Comprehensive Settlement Services</h2>
+                <h2 className="text-3xl font-bold text-zinc-900 mb-6">Komplexné služby vysporiadania</h2>
                 <p className="text-zinc-600 mb-6">
-                  Our real estate settlement services provide end-to-end solutions for property transactions, ensuring
-                  all legal and administrative requirements are met with precision and care.
+                  Naše služby vysporiadania nehnuteľností poskytujú komplexné riešenia pre majetkové transakcie, pričom
+                  zabezpečujeme splnenie všetkých právnych a administratívnych požiadaviek s presnosťou a starostlivosťou.
                 </p>
                 <p className="text-zinc-600 mb-8">
-                  Whether you're dealing with residential, commercial, or specialized property settlements, our
-                  expertise ensures a smooth and legally compliant process from start to finish.
+                  Či už ide o rezidenčné, komerčné alebo špecializované vysporiadania, naše skúsenosti zabezpečia
+                  hladký a právne bezchybný proces od začiatku až do konca.
                 </p>
 
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <CheckCircle className="h-6 w-6 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-medium text-zinc-900">Documentation Preparation</h3>
+                      <h3 className="font-medium text-zinc-900">Príprava dokumentácie</h3>
                       <p className="text-zinc-600">
-                        Comprehensive preparation and review of all necessary legal documents.
+                        Komplexná príprava a kontrola všetkých potrebných právnych dokumentov.
                       </p>
                     </div>
                   </div>
@@ -73,9 +72,9 @@ export default function SettlementPage() {
                   <div className="flex items-start">
                     <CheckCircle className="h-6 w-6 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-medium text-zinc-900">Legal Compliance</h3>
+                      <h3 className="font-medium text-zinc-900">Právna zhoda</h3>
                       <p className="text-zinc-600">
-                        Ensuring all aspects of the settlement comply with current laws and regulations.
+                        Zabezpečenie, že všetky aspekty vysporiadania sú v súlade s aktuálnymi zákonmi a predpismi.
                       </p>
                     </div>
                   </div>
@@ -83,9 +82,9 @@ export default function SettlementPage() {
                   <div className="flex items-start">
                     <CheckCircle className="h-6 w-6 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-medium text-zinc-900">Transaction Management</h3>
+                      <h3 className="font-medium text-zinc-900">Manažment transakcií</h3>
                       <p className="text-zinc-600">
-                        Coordinating all parties involved to ensure a smooth and timely settlement process.
+                        Koordinácia všetkých zúčastnených strán pre zabezpečenie hladkého a včasného priebehu procesu.
                       </p>
                     </div>
                   </div>
@@ -95,14 +94,14 @@ export default function SettlementPage() {
               <div className="relative rounded-lg overflow-hidden h-[400px]">
                 <Image
                   src="/images/service-settlement.jpg"
-                  alt="Real Estate Settlement"
+                  alt="Vysporiadanie nehnuteľností"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">Expert Settlement Services</h3>
-                  <p className="text-zinc-200">Professional handling of all your property settlement needs</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Odborné služby vysporiadania</h3>
+                  <p className="text-zinc-200">Profesionálne zabezpečenie všetkých vašich potrieb pri vysporiadaní majetku</p>
                 </div>
               </div>
             </div>
@@ -113,14 +112,14 @@ export default function SettlementPage() {
         <section className="py-16 bg-emerald-50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-zinc-900 mb-4">Ready to Get Started?</h2>
+              <h2 className="text-3xl font-bold text-zinc-900 mb-4">Pripravení začať?</h2>
               <p className="text-zinc-600 mb-8">
-                Contact us today to discuss your real estate settlement needs and discover how our expertise can help
-                you navigate the process with confidence.
+                Kontaktujte nás ešte dnes a prediskutujte svoje potreby v oblasti vysporiadania nehnuteľností. Zistite,
+                ako vám naše odborné znalosti môžu pomôcť s istotou zvládnuť celý proces.
               </p>
               <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg h-auto">
                 <Link href="/contact" className="inline-flex items-center">
-                  Contact Us
+                  Kontaktujte nás
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

@@ -108,7 +108,7 @@ export function Services() {
                   href="/services/settlement"
                   className="inline-flex items-center text-emerald-400 text-sm font-medium hover:text-emerald-300 transition-colors"
                 >
-                  Learn more
+                  Zistiť viac
                   <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -137,7 +137,7 @@ export function Services() {
                   href="/services/expertise"
                   className="inline-flex items-center text-sage-400 text-sm font-medium hover:text-sage-300 transition-colors"
                 >
-                  Learn more
+                  Zistiť viac
                   <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -166,7 +166,7 @@ export function Services() {
                   href="/services/consultation"
                   className="inline-flex items-center text-emerald-400 text-sm font-medium hover:text-emerald-300 transition-colors"
                 >
-                  Learn more
+                  Zistiť viac
                   <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -195,7 +195,7 @@ export function Services() {
                   href="/services/legal"
                   className="inline-flex items-center text-sage-400 text-sm font-medium hover:text-sage-300 transition-colors"
                 >
-                  Learn more
+                  Zistiť viac
                   <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
