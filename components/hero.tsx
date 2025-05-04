@@ -236,7 +236,7 @@ export function Hero() {
             >
               <Button
                 asChild
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg h-auto group w-full sm:w-auto"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg h-auto group w-full sm:w-auto"
               >
                 <Link href="/contact">
                   {t("hero.cta")}

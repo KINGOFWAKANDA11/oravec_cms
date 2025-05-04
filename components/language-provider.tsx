@@ -3,7 +3,7 @@
 import type React from "react"
 import { createContext, useContext, useState, useEffect } from "react"
 
-type Language = "en" | "sk"
+type Language = "sk" | "en"
 
 type Translations = {
   [key: string]: {
@@ -162,8 +162,8 @@ const translations: Translations = {
     sk: "Investorka do nehnuteľností",
   },
   "references.client2.testimonial": {
-    en: "I've worked with many real estate experts, but Ľub's professionalism and knowledge stand out. His expertise reports are thorough and have been invaluable for my investment decisions.",
-    sk: "Spolupracovala som s mnohými odborníkmi na nehnuteľnosti, ale Ľubova profesionalita a znalosti vynikajú. Jeho znalecké posudky sú dôkladné a boli neoceniteľné pre moje investičné rozhodnutia.",
+    en: "I've worked with many real estate experts, but Ľubo's professionalism stand out. His reports are thorough and have been invaluable for my decisions.",
+    sk: "Spolupracovala som s mnohými odborníkmi na nehnuteľnosti, ale Ľubova profesionalita vyniká. Jeho posudky sú dôkladné a boli neoceniteľné pre moje rozhodnutia.",
   },
   "references.client3.name": {
     en: "Peter Horváth",
