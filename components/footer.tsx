@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4 text-emerald-500">Ľub Oravec</h3>
-            <p className="text-zinc-400 mb-4">Professional real estate settlement and expertise services.</p>
+            <p className="text-zinc-400 mb-4">Profesionálne vysporiadanie majetku</p>
             <div className="flex space-x-4">
               <a href="#" className="text-zinc-400 hover:text-emerald-500 transition-colors">
                 <Facebook className="h-5 w-5" />
@@ -28,7 +28,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4">Rýchle odkazy</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/#about" className="text-zinc-400 hover:text-emerald-500 transition-colors">
@@ -54,7 +54,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4">Services</h3>
+            <h3 className="text-lg font-bold mb-4">Služby</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/#services" className="text-zinc-400 hover:text-emerald-500 transition-colors">
@@ -80,9 +80,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-4">Contact</h3>
+            <h3 className="text-lg font-bold mb-4">Kontakt</h3>
             <address className="not-italic text-zinc-400 space-y-2">
-              <p>123 Business Street</p>
               <p>Bratislava, 81102</p>
               <p>+421 900 123 456</p>
               <p>info@luboravec.com</p>
