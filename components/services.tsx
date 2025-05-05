@@ -138,18 +138,20 @@ export function Services() {
 
         {/* Pricing Packages */}
         <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center flex flex-col gap-4 mb-8">
-          <div>{t("services.choosePackage")}</div>
-          <div className="max-w-xl mx-auto p-6 space-y-4">
-  <h2 className="text-xl font-bold text-gray-800">Analýza nehnuteľnosti</h2>
-  <p className="italic text-emerald-500">„Dobrá príprava je základ!“</p>
-  <h3 className="font-semibold text-gray-700">Úvodná základná analýza nehnuteľnosti</h3>
-  <ul className="text-sm pl-5 space-y-1 text-gray-700">
-    <li>Overím stav vlastníckych vzťahov na liste vlastníctva.</li>
-    <li>Posúdim, či je na pozemok prístup a zistím možnosti využitia v zmysle územného plánu (ak je vypracovaný).</li>
-    <li>Získate jasné odporúčanie, či je projekt perspektívny alebo nie.</li>
-  </ul>
-  <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600">Cena: Zdarma</p>
-</div>
+          <div className="mb-8">{t("services.choosePackage")}</div>
+          <div className="w-full mx-auto p-6 space-y-6 rounded-2xl shadow-2xl border border-zinc-200">
+            <h2 className="text-xl font-bold text-gray-800">Analýza nehnuteľnosti</h2>
+            <p className="italic text-emerald-500">„Dobrá príprava je základ!“</p>
+            <h3 className="font-semibold text-gray-700">Úvodná základná analýza nehnuteľnosti</h3>
+            <ul className="text-sm pl-5 space-y-1 text-gray-700">
+              <li>Overím stav vlastníckych vzťahov na liste vlastníctva.</li>
+              <li>Posúdim, či je na pozemok prístup a zistím možnosti využitia v zmysle územného plánu (ak je vypracovaný).</li>
+              <li>Získate jasné odporúčanie, či je projekt perspektívny alebo nie.</li>
+            </ul>
+            <div className="max-w-64 mx-auto">
+            <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600">Zdarma</p>
+            </div>
+          </div>
         </motion.h3>
 
         <motion.div
