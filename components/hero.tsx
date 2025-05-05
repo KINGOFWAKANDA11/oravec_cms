@@ -198,19 +198,17 @@ export function Hero() {
               transition={{ delay: 2.5, duration: 0.8 }}
               className="flex flex-wrap items-center text-lg text-emerald-400 font-medium min-h-[32px]"
             >
-              <span className="text-white mr-2">Specializing in:</span>
+              <span className="text-white mr-2">Špecializujem sa na:</span>
               {mounted && (
                 <TypeAnimation
                   sequence={[
-                    "Property Settlements",
+                    "Vysporiadanie nehnuteľností",
                     2000,
-                    "Real Estate Expertise",
+                    "Vysporiadanie pozemkov",
                     2000,
-                    "Legal Documentation",
+                    "Odhad hodnoty nehnuteľnosti",
                     2000,
-                    "Property Valuation",
-                    2000,
-                    "Contract Reviews",
+                    "Kontrolu zmlúv",
                     2000,
                   ]}
                   wrapper="span"
