@@ -67,7 +67,7 @@ export function Navbar() {
                 isScrolled ? "text-foreground" : "text-white"
               )}
             >
-              {t("nav.contact")}
+              Kontakt
             </Link>
           </nav>
 
