@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/contact-form"
 import { ContactInfo } from "@/components/contact-info"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 
 export default function ContactPage() {
   // Scroll to top when component mounts
@@ -23,7 +23,9 @@ export default function ContactPage() {
             <ContactInfo />
           </div>
           <div className="order-1 md:order-2">
-            <ContactForm />
+          <Suspense fallback={<div>Loading form...</div>}>
+              <ContactForm />
+            </Suspense>
           </div>
         </div>
       </main>
