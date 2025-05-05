@@ -41,17 +41,17 @@ export function References() {
     },
     {
       id: 4,
-      name: "Tomáš Novotný",
+      name: "Peťa Žiaranová",
       position: t("references.client1.position"),
       testimonial:
-        "Ľub's expertise in real estate settlement is unmatched. He guided us through a complex property division with professionalism and attention to detail.",
+        "Pozemkové úpravy ma zaskočili. Nevedela som čo robiť. Lubo mi všetko vysvetlil a vďaka nemu máme dva skvelé pozemky na super mieste. Všetko prebehlo...",
     },
     {
       id: 5,
-      name: "Zuzana Kováčová",
+      name: "Roman Kružliak",
       position: t("references.client2.position"),
       testimonial:
-        "I've worked with several real estate experts, but Ľub's knowledge and dedication stand out. His advice saved us from making costly mistakes during our property purchase.",
+        "V Žiline som s Ľubom riešil dom s pozemkom. Vzťahy medzi spoluvlastníkmi boli zlé, súdili sa. Aj tak sa nám podarilo odkúpiť všetky podiely...",
     },
   ]
 

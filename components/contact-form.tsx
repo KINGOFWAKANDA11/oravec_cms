@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTranslation } from "./language-provider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Send, CheckCircle } from "lucide-react"
+import { useSearchParams } from "next/navigation"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export function ContactForm() {
   const { t } = useTranslation()
@@ -19,6 +21,16 @@ export function ContactForm() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [selectedPackage, setSelectedPackage] = useState("")
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    // Get the package from URL query parameters
+    const packageParam = searchParams.get("package")
+    if (packageParam) {
+      setSelectedPackage(packageParam)
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -69,6 +81,23 @@ export function ContactForm() {
           </div>
 
           <div>
+            <label htmlFor="package" className="block text-sm font-medium text-zinc-700 mb-1">
+              {t("contact.form.packageLabel")}
+            </label>
+            <Select value={selectedPackage} onValueChange={setSelectedPackage}>
+              <SelectTrigger className="w-full bg-white text-zinc-900 border-zinc-200">
+                <SelectValue placeholder={t("contact.form.packagePlaceholder")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">{t("contact.form.noPackage")}</SelectItem>
+                <SelectItem value="basic">{t("contact.form.basicPackage")}</SelectItem>
+                <SelectItem value="standard">{t("contact.form.standardPackage")}</SelectItem>
+                <SelectItem value="premium">{t("contact.form.premiumPackage")}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
             <label htmlFor="message" className="block text-sm font-medium text-zinc-700 mb-1">
               {t("contact.form.message")}
             </label>
@@ -78,7 +107,7 @@ export function ContactForm() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-emerald-600  bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
           >
             {isSubmitting ? (
               <span className="flex items-center">

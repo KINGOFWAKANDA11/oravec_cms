@@ -3,7 +3,7 @@
 import { useTranslation } from "./language-provider"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Building2, Users, CheckCircle } from "lucide-react"
+import { Building2, Users, CheckCircle, Trophy } from 'lucide-react'
 
 export function About() {
   const { t } = useTranslation()
@@ -83,7 +83,7 @@ export function About() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-4 gap-8"
         >
           <motion.div
             variants={itemVariants}
@@ -94,7 +94,7 @@ export function About() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4 group-hover:bg-emerald-200 transition-colors duration-300">
                 <Building2 className="h-8 w-8 text-emerald-600" />
               </div>
-              <h3 className="text-4xl font-bold text-zinc-900 mb-2">10+</h3>
+              <h3 className="text-4xl font-bold text-zinc-900 mb-2">8+</h3>
               <p className="text-zinc-600">{t("about.experience")}</p>
             </div>
           </motion.div>
@@ -108,7 +108,7 @@ export function About() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-sage-100 rounded-full mb-4 group-hover:bg-sage-200 transition-colors duration-300">
                 <Users className="h-8 w-8 text-sage-500" />
               </div>
-              <h3 className="text-4xl font-bold text-zinc-900 mb-2">200+</h3>
+              <h3 className="text-4xl font-bold text-zinc-900 mb-2">100 000 m2</h3>
               <p className="text-zinc-600">{t("about.clients")}</p>
             </div>
           </motion.div>
@@ -122,8 +122,22 @@ export function About() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-4 group-hover:bg-emerald-200 transition-colors duration-300">
                 <CheckCircle className="h-8 w-8 text-emerald-600" />
               </div>
-              <h3 className="text-4xl font-bold text-zinc-900 mb-2">500+</h3>
+              <h3 className="text-4xl font-bold text-zinc-900 mb-2">€ 4,45 mil.</h3>
               <p className="text-zinc-600">{t("about.projects")}</p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="bg-white p-8 rounded-lg shadow-lg text-center relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-sage-200 border border-transparent"
+          >
+            <div className="absolute top-0 right-0 w-20 h-20 bg-sage-100 rounded-full opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+            <div className="relative">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-sage-100 rounded-full mb-4 group-hover:bg-sage-200 transition-colors duration-300">
+                <Trophy className="h-8 w-8 text-sage-500" />
+              </div>
+              <h3 className="text-4xl font-bold text-zinc-900 mb-2">€ 1,8 mil.</h3>
+              <p className="text-zinc-600">{t("about.satisfaction")}</p>
             </div>
           </motion.div>
         </motion.div>

@@ -14,13 +14,17 @@ export default function ContactPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-300">
       <Navbar />
       <main className="container mx-auto px-4 py-24">
         <h1 className="text-4xl font-bold mb-12 text-center">Contact</h1>
         <div className="grid md:grid-cols-2 gap-12">
-          <ContactInfo />
-          <ContactForm />
+          <div className="order-2 md:order-1">
+            <ContactInfo />
+          </div>
+          <div className="order-1 md:order-2">
+            <ContactForm />
+          </div>
         </div>
       </main>
       <Footer />

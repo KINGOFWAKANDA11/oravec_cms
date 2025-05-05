@@ -1,11 +1,13 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
 import { useTranslation } from "./language-provider"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Home, FileText, MessageSquare, Scale } from "lucide-react"
+import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 
 export function Services() {
   const { t } = useTranslation()
@@ -82,125 +84,234 @@ export function Services() {
           </motion.p>
         </motion.div>
 
+        {/* Main Service Description */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="max-w-4xl mx-auto mb-16"
         >
-          {/* Real Estate Settlement Card */}
-          <motion.div variants={itemVariants} className="rounded-lg shadow-lg relative overflow-hidden h-[320px] group">
-            {/* Background Image */}
-            <div className="absolute inset-0 group-hover:scale-110 transition-transform duration-500">
-              <Image src="/images/service-settlement.jpg" alt="Real Estate Settlement" fill className="object-cover" />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
-            </div>
-
-            <div className="relative h-full p-8 flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-100/90 backdrop-blur-sm rounded-full mb-4">
-                <Home className="h-6 w-6 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">{t("services.settlement.title")}</h3>
-              <p className="text-zinc-200">{t("services.settlement.description")}</p>
-              <div className="mt-auto pt-4">
-                <Link
-                  href="/services/settlement"
-                  className="inline-flex items-center text-emerald-400 text-sm font-medium hover:text-emerald-300 transition-colors"
-                >
-                  Zistiť viac
-                  <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+          <motion.div variants={itemVariants} className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="relative h-[300px]">
+              <Image src="/images/service-settlement.jpg" alt={t("services.mainTitle")} fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 flex items-end">
+                <div className="p-8">
+                  <h3 className="text-3xl font-bold text-white mb-2">{t("services.mainTitle")}</h3>
+                  <p className="text-xl text-zinc-200">{t("services.mainSubtitle")}</p>
+                </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* Property Expertise Card */}
-          <motion.div variants={itemVariants} className="rounded-lg shadow-lg relative overflow-hidden h-[320px] group">
-            {/* Background Image */}
-            <div className="absolute inset-0 group-hover:scale-110 transition-transform duration-500">
-              <Image src="/images/service-expertise.jpg" alt="Property Expertise" fill className="object-cover" />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
-            </div>
-
-            <div className="relative h-full p-8 flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-sage-100/90 backdrop-blur-sm rounded-full mb-4">
-                <FileText className="h-6 w-6 text-sage-500" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">{t("services.expertise.title")}</h3>
-              <p className="text-zinc-200">{t("services.expertise.description")}</p>
-              <div className="mt-auto pt-4">
-                <Link
-                  href="/services/expertise"
-                  className="inline-flex items-center text-sage-400 text-sm font-medium hover:text-sage-300 transition-colors"
-                >
-                  Zistiť viac
-                  <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+            <div className="p-8">
+              <p className="text-zinc-700 mb-6">{t("services.mainDescription")}</p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="flex items-start">
+                  <div className="bg-emerald-100 p-2 rounded-full mr-3">
+                    <FileCheck className="h-5 w-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-zinc-900">{t("services.legalCompliance")}</h4>
+                    <p className="text-sm text-zinc-600">{t("services.legalComplianceDesc")}</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-emerald-100 p-2 rounded-full mr-3">
+                    <Clock className="h-5 w-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-zinc-900">{t("services.timelyProcessing")}</h4>
+                    <p className="text-sm text-zinc-600">{t("services.timelyProcessingDesc")}</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="bg-emerald-100 p-2 rounded-full mr-3">
+                    <Shield className="h-5 w-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-zinc-900">{t("services.riskManagement")}</h4>
+                    <p className="text-sm text-zinc-600">{t("services.riskManagementDesc")}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
+        </motion.div>
 
-          {/* Consultation Card */}
-          <motion.div variants={itemVariants} className="rounded-lg shadow-lg relative overflow-hidden h-[320px] group">
-            {/* Background Image */}
-            <div className="absolute inset-0 group-hover:scale-110 transition-transform duration-500">
-              <Image src="/images/service-consultation.jpg" alt="Consultation" fill className="object-cover" />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
+        {/* Pricing Packages */}
+        <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center flex flex-col gap-4 mb-8">
+          <div>{t("services.choosePackage")}</div>
+          <div className="max-w-xl mx-auto p-6 space-y-4">
+  <h2 className="text-xl font-bold text-gray-800">Analýza nehnuteľnosti</h2>
+  <p className="italic text-emerald-500">„Dobrá príprava je základ!“</p>
+  <h3 className="font-semibold text-gray-700">Úvodná základná analýza nehnuteľnosti</h3>
+  <ul className="text-sm pl-5 space-y-1 text-gray-700">
+    <li>Overím stav vlastníckych vzťahov na liste vlastníctva.</li>
+    <li>Posúdim, či je na pozemok prístup a zistím možnosti využitia v zmysle územného plánu (ak je vypracovaný).</li>
+    <li>Získate jasné odporúčanie, či je projekt perspektívny alebo nie.</li>
+  </ul>
+  <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600">Cena: Zdarma</p>
+</div>
+        </motion.h3>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {/* Basic Package */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-emerald-300 transition-colors duration-300 flex flex-col h-full"
+          >
+            <div className="relative h-[200px]">
+              <Image
+                src="/images/service-settlement.jpg"
+                alt={t("services.basic.title")}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
+                <div className="text-center p-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                    <Home className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{t("services.basic.title")}</h3>
+                </div>
+              </div>
             </div>
-
-            <div className="relative h-full p-8 flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-100/90 backdrop-blur-sm rounded-full mb-4">
-                <MessageSquare className="h-6 w-6 text-emerald-600" />
+            <div className="p-6 flex-grow">
+              <div className="text-center mb-6">
+                <div className="text-4xl font-bold text-zinc-900">€1000</div>
+                <p className="text-zinc-500">{t("services.basic.payment")}</p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">{t("services.consultation.title")}</h3>
-              <p className="text-zinc-200">{t("services.consultation.description")}</p>
-              <div className="mt-auto pt-4">
-                <Link
-                  href="/services/consultation"
-                  className="inline-flex items-center text-emerald-400 text-sm font-medium hover:text-emerald-300 transition-colors"
-                >
-                  Zistiť viac
-                  <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.basic.feature1")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.basic.feature2")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.basic.feature3")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.basic.feature4")}</p>
+                </div>
               </div>
+            </div>
+            <div className="p-6 pt-0">
+              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Link href="/contact?package=basic">{t("services.basic.select")}</Link>
+              </Button>
             </div>
           </motion.div>
 
-          {/* Legal Support Card */}
-          <motion.div variants={itemVariants} className="rounded-lg shadow-lg relative overflow-hidden h-[320px] group">
-            {/* Background Image */}
-            <div className="absolute inset-0 group-hover:scale-110 transition-transform duration-500">
-              <Image src="/images/service-legal.jpg" alt="Legal Support" fill className="object-cover" />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>
+          {/* Standard Package */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white rounded-lg shadow-xl overflow-hidden border-2 border-emerald-500 flex flex-col h-full relative"
+          >
+            <div className="absolute top-0 right-0 bg-emerald-500 text-white px-4 py-1 text-sm font-medium">
+              {t("services.standard.mostPopular")}
             </div>
+            <div className="relative h-[200px]">
+              <Image
+                src="/images/service-expertise.jpg"
+                alt={t("services.standard.title")}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
+                <div className="text-center p-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                    <Building className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{t("services.standard.title")}</h3>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 flex-grow">
+              <div className="text-center mb-6">
+                <div className="text-4xl font-bold text-zinc-900">€4000+</div>
+                <p className="text-zinc-500">{t("services.basic.payment")}</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.standard.feature1")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.standard.feature2")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.standard.feature3")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.standard.feature4")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.standard.feature5")}</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 pt-0">
+              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Link href="/contact?package=standard">{t("services.standard.select")}</Link>
+              </Button>
+            </div>
+          </motion.div>
 
-            <div className="relative h-full p-8 flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-sage-100/90 backdrop-blur-sm rounded-full mb-4">
-                <Scale className="h-6 w-6 text-sage-500" />
+          {/* Premium Package */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-emerald-300 transition-colors duration-300 flex flex-col h-full"
+          >
+            <div className="relative h-[200px]">
+              <Image src="/images/service-legal.jpg" alt={t("services.premium.title")} fill className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
+                <div className="text-center p-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                    <Crown className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{t("services.premium.title")}</h3>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">{t("services.legal.title")}</h3>
-              <p className="text-zinc-200">{t("services.legal.description")}</p>
-              <div className="mt-auto pt-4">
-                <Link
-                  href="/services/legal"
-                  className="inline-flex items-center text-sage-400 text-sm font-medium hover:text-sage-300 transition-colors"
-                >
-                  Zistiť viac
-                  <svg className="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+            </div>
+            <div className="p-6 flex-grow">
+              <div className="text-center mb-6">
+                <div className="text-4xl font-bold text-zinc-900">Individuálna cena</div>
               </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.premium.feature1")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.premium.feature2")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.premium.feature3")}</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                  <p className="text-zinc-700">{t("services.premium.feature4")}</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 pt-0">
+              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                <Link href="/contact?package=premium">{t("services.premium.select")}</Link>
+              </Button>
             </div>
           </motion.div>
         </motion.div>
