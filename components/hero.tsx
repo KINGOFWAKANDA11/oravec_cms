@@ -198,7 +198,6 @@ export function Hero() {
               transition={{ delay: 2.5, duration: 0.8 }}
               className="flex flex-wrap items-center text-lg text-emerald-400 font-medium min-h-[32px]"
             >
-              <span className="text-white mr-2">Špecializujem sa na:</span>
               {mounted && (
                 <TypeAnimation
                   sequence={[
