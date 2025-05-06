@@ -178,7 +178,6 @@ export function Hero() {
                     className="block"
                   />
                 )}
-                <br />
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
