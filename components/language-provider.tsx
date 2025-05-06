@@ -724,7 +724,7 @@ const translations: Translations = {
   },
   "contact.form.standardPackage": {
     en: "Standard Package (€899)",
-    sk: "Osobný mentoring pri vysporiadaní  (€4000+)",
+    sk: "Osobný mentoring pri vysporiadaní  (€8000+)",
   },
   "contact.form.premiumPackage": {
     en: "Premium Package (€1,499)",
