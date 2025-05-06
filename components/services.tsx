@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useTranslation } from "./language-provider"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield } from "lucide-react"
+import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield, Book } from "lucide-react"
 import Image from "next/image"
 
 export function Services() {
@@ -158,7 +158,7 @@ export function Services() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-8 justify-center items-center"
         >
           {/* Basic Package */}
           <motion.div
@@ -238,7 +238,7 @@ export function Services() {
             </div>
             <div className="p-6 flex-grow">
               <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-zinc-900">€4000+</div>
+                <div className="text-4xl font-bold text-zinc-900">€8000+</div>
                 <p className="text-zinc-500">{t("services.basic.payment")}</p>
               </div>
               <div className="space-y-3 mb-6">
@@ -316,6 +316,57 @@ export function Services() {
               </Button>
             </div>
           </motion.div>
+          <div className="md:col-span-full flex justify-center">
+  <motion.div
+    variants={itemVariants}
+    className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-purple-300 transition-colors duration-300 flex flex-col h-full relative max-w-sm"
+  >
+    <div className="absolute top-0 right-0 bg-indigo-500 text-white px-4 py-1 text-sm font-medium">
+      Kurz
+    </div>
+    <div className="relative h-[200px]">
+      <Image
+        src="/images/course.jpg"
+        alt="Vzdelávací kurz"
+        fill
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/80 to-indigo-800/40 flex items-center justify-center">
+        <div className="text-center p-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+            <Book className="h-8 w-8 text-white" />
+          </div>
+          <h3 className="text-2xl font-bold text-white">Vzdelávací kurz</h3>
+        </div>
+      </div>
+    </div>
+    <div className="p-6 flex-grow">
+      <div className="text-center mb-6">
+        <div className="text-4xl font-bold text-zinc-900">Pripravujeme</div>
+        <p className="text-zinc-500">Čoskoro dostupné</p>
+      </div>
+      <div className="space-y-3 mb-6">
+        <div className="flex items-start">
+          <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
+          <p className="text-zinc-700">Intenzívne školenie pod vedením odborníka</p>
+        </div>
+        <div className="flex items-start">
+          <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
+          <p className="text-zinc-700">Praktické cvičenia a prípadové štúdie</p>
+        </div>
+        <div className="flex items-start">
+          <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
+          <p className="text-zinc-700">Osvedčenie o absolvovaní</p>
+        </div>
+      </div>
+    </div>
+    <div className="p-6 pt-0">
+      <Button asChild className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+        <Link href="/contact?package=education">Zvoliť kurz</Link>
+      </Button>
+    </div>
+  </motion.div>
+</div>
         </motion.div>
       </div>
     </section>

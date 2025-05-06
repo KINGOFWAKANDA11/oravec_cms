@@ -183,7 +183,7 @@ export function Hero() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5, duration: 0.8 }}
-                  className="text-zinc-400"
+                  className="text-zinc-400 text-[40px]"
                 >
                   {t("hero.subtitle")}
                 </motion.span>

@@ -93,6 +93,7 @@ export function ContactForm() {
                 <SelectItem value="basic">{t("contact.form.basicPackage")}</SelectItem>
                 <SelectItem value="standard">{t("contact.form.standardPackage")}</SelectItem>
                 <SelectItem value="premium">{t("contact.form.premiumPackage")}</SelectItem>
+                <SelectItem value="couse">{t("contact.form.course")}</SelectItem>
               </SelectContent>
             </Select>
           </div>

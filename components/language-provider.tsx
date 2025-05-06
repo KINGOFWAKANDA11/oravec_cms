@@ -39,11 +39,11 @@ const translations: Translations = {
   // Hero
   "hero.title": {
     en: "TOP RATED Expert",
-    sk: "NAJLEPŠIE HODNOTENÝ Expert",
+    sk: "Špecialista v oblasti",
   },
   "hero.subtitle": {
     en: "In Real Estate Settlement",
-    sk: "V oblasti vysporiadania nehnuteľností",
+    sk: "vysporiadania nehnuteľnosti",
   },
   "hero.description": {
     en: "Professional real estate settlement and expertise services with proven results.",
@@ -91,7 +91,7 @@ const translations: Translations = {
   },
   "about.satisfaction": {
     en: "Client Satisfaction",
-    sk: "Hodnota projektov v príprave",
+    sk: "Oslovených vlastníkov",
   },
 
   // Education
@@ -716,7 +716,7 @@ const translations: Translations = {
   },
   "contact.form.noPackage": {
     en: "No package - General inquiry",
-    sk: "Žiadny balík - Základný balík",
+    sk: "Iné / Konzultácia",
   },
   "contact.form.basicPackage": {
     en: "Basic Package (€499)",
@@ -729,6 +729,10 @@ const translations: Translations = {
   "contact.form.premiumPackage": {
     en: "Premium Package (€1,499)",
     sk: "Individuálna spolupráca (individuálna cena)",
+  },
+  "contact.form.course": {
+    en: "Premium Package (€1,499)",
+    sk: "Vzdelávací kurz",
   },
 
   "contact.info.address": {

@@ -17,7 +17,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-300">
       <Navbar />
       <main className="container mx-auto px-4 py-24">
-        <h1 className="text-4xl font-bold mb-12 text-center">Contact</h1>
+        <h1 className="text-4xl font-bold mb-12 text-center">Kontakt</h1>
         <div className="grid md:grid-cols-2 gap-12">
           <div className="order-2 md:order-1">
             <ContactInfo />

@@ -50,7 +50,7 @@ export function ContactInfo() {
           </div>
           <div>
             <h4 className="font-medium mb-1">{t("contact.info.address")}</h4>
-            <p className="text-zinc-400">123 Business Street, Bratislava, 81102</p>
+            <p className="text-zinc-400">Daxnerova 9, 010 01 Žilina</p>
           </div>
         </motion.div>
 
@@ -60,7 +60,7 @@ export function ContactInfo() {
           </div>
           <div>
             <h4 className="font-medium mb-1">{t("contact.info.phone")}</h4>
-            <p className="text-zinc-400">+421 900 123 456</p>
+            <p className="text-zinc-400">+421 911 990 580</p>
           </div>
         </motion.div>
 
@@ -70,7 +70,7 @@ export function ContactInfo() {
           </div>
           <div>
             <h4 className="font-medium mb-1">{t("contact.info.email")}</h4>
-            <p className="text-zinc-400">info@luboravec.com</p>
+            <p className="text-zinc-400">info@lubooravec.sk</p>
           </div>
         </motion.div>
 

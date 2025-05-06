@@ -82,9 +82,10 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">Kontakt</h3>
             <address className="not-italic text-zinc-400 space-y-2">
-              <p>Bratislava, 81102</p>
-              <p>+421 900 123 456</p>
-              <p>info@luboravec.com</p>
+              <p>Daxnerova 9</p>
+              <p>Žilina, 010 01</p>
+              <p>+421 911 990 580</p>
+              <p>info@lubooravec.sk</p>
             </address>
           </div>
         </div>
@@ -95,7 +96,7 @@ export function Footer() {
           </p>
 
           <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2">
+            <div className="flex opacity-0 items-center space-x-2">
               <Globe className="h-4 w-4 text-zinc-400" />
               <button
                 onClick={() => setLanguage("en")}
