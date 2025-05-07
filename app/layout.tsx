@@ -8,8 +8,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Ľub Oravec | Real Estate Expert",
-  description: "Professional real estate settlement and expertise services by Ľub Oravec",
+  title: "Ľubo Oravec | Realitný expert",
+  description: "Profesionálne služby pri vysporiadaní nehnuteľností.",
     generator: 'v0.dev'
 }
 
