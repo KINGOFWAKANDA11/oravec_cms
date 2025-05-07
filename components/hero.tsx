@@ -122,7 +122,7 @@ export function Hero() {
               {/* The image itself */}
               <div className="relative w-full h-full">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_eraser%20%281%29-keZkM74S16DEDXA1jwvPGIuepMd8vf.png"
+                  src="/profile2.png"
                   alt="Ľub Oravec"
                   fill
                   className="object-cover object-top scale-[1.2] translate-y-5"
