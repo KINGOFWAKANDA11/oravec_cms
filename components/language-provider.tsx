@@ -38,7 +38,7 @@ const translations: Translations = {
 
   // Hero
   "hero.title": {
-    en: "TOP RATED Expert",
+    en: "Specialization",
     sk: "Špecialista v oblasti",
   },
   "hero.subtitle": {
@@ -74,7 +74,7 @@ const translations: Translations = {
     sk: "O mne",
   },
   "about.description": {
-    en: "With years of experience in real estate settlement and expertise, I provide professional services to help clients navigate complex property situations. My goal is to ensure smooth, transparent, and legally sound real estate transactions.",
+    en: "My path was not always directly about real estate, but each experience shaped me into what I do today: transforming complicated property situations into real values. I started in advocacy, where I learned to navigate the tangle of legal regulations. However, I soon discovered that I was more attracted to the dynamics of business. Therefore, while still in school, I built and then successfully sold a franchise concept. This experience gave me valuable practical lessons and led me to the area where I found my true calling – real estate. During my business, I encountered a frustrating reality: a lot of land and real estate lie fallow, are practically worthless and unusable simply because of complex or unresolved ownership relationships. However, I also saw enormous potential – that with the right arrangement, such property can become a valuable asset. For the last 8 years (since 2017), I have therefore been fully dedicated to real estate settlement, initially for my own, successfully implemented and sold projects. It was here that I verified that the settlement process itself has high added value.",
     sk: "Moja cesta nebola vždy priamo o nehnuteľnostiach, no každá skúsenosť ma formovala k tomu, čím sa zaoberám dnes: premieňaniu komplikovaných majetkových situácií na reálne hodnoty. Začínal som v advokácii, kde som sa naučil orientovať v spleti právnych predpisov. Čoskoro som však zistil, že ma viac láka dynamika podnikania. Ešte počas školy som preto vybudoval a následne úspešne predal franchisingový koncept. Táto skúsenosť mi dala cenné lekcie z praxe a priviedla ma k oblasti, kde som našiel svoje skutočné poslanie – nehnuteľnosti. Počas podnikania som narazil na frustrujúcu realitu: množstvo pozemkov a nehnuteľností leží ladom, sú prakticky bezcenné a nepoužiteľné len kvôli zložitým alebo nevyriešeným vlastníckym vzťahom. Videl som však aj obrovský potenciál – že správnym vysporiadaním sa z takéhoto majetku stáva hodnotné aktívum. Posledných 8 rokov (od 2017) som sa preto naplno venoval vysporiadaniu nehnuteľností, najprv pre vlastné, úspešne realizované a predané projekty. Práve tu som si overil, že proces vysporiadania má sám o sebe vysokú pridanú hodnotu.",
   },
   "about.experience": {
@@ -82,15 +82,15 @@ const translations: Translations = {
     sk: "Roky praxe",
   },
   "about.clients": {
-    en: "Satisfied Clients",
+    en: "Area of land settled",
     sk: "Plocha vysporiadaných pozemkov",
   },
   "about.projects": {
-    en: "Completed Projects",
+    en: "Value of sales made",
     sk: "Hodnota realizovaných predajov",
   },
   "about.satisfaction": {
-    en: "Client Satisfaction",
+    en: "Owners approached",
     sk: "Oslovených vlastníkov",
   },
 
@@ -763,11 +763,11 @@ const translations: Translations = {
   },
   "footer.privacy": {
     en: "Privacy Policy",
-    sk: "Ochrana osobných údajov",
+    sk: "Zásady ochrany osobných údajov",
   },
   "footer.terms": {
-    en: "Terms of Service",
-    sk: "Podmienky služby",
+    en: "Cookie Policy",
+    sk: "Zásady používania súborov cookie",
   },
 }
 

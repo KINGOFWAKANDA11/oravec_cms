@@ -72,7 +72,6 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            {/*
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -89,8 +88,6 @@ export function Navbar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            */}
-
             <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white">
               <Link href="/contact">{t("nav.speak")}</Link>
             </Button>

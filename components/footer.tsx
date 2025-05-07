@@ -96,7 +96,7 @@ export function Footer() {
           </p>
 
           <div className="flex items-center space-x-6">
-            <div className="flex opacity-0 items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <Globe className="h-4 w-4 text-zinc-400" />
               <button
                 onClick={() => setLanguage("en")}

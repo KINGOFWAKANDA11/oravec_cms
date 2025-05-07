@@ -5,6 +5,7 @@ import { Services } from "@/components/services"
 import { References } from "@/components/references"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { CookieConsent } from "@/components/cookie"
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <About />
         <Services />
         <References />
+        <CookieConsent/>
       </main>
       <Footer />
       <ScrollToTop />

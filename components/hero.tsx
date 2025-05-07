@@ -357,7 +357,7 @@ export function Hero() {
           style={{ height: "100%" }}
         >
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_eraser%20%281%29-keZkM74S16DEDXA1jwvPGIuepMd8vf.png"
+            src="/profile2.png"
             alt="Ľub Oravec"
             width={600}
             height={1000}
