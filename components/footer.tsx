@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4 text-emerald-500">Ľubo Oravec</h3>
-            <p className="text-zinc-400 mb-4">Profesionálne vysporiadanie majetku</p>
+            <p className="text-zinc-400 mb-4">{t("footer.hodnota")}</p>
             <div className="flex space-x-4">
               <a href="#" className="text-zinc-400 hover:text-emerald-500 transition-colors">
                 <Facebook className="h-5 w-5" />

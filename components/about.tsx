@@ -4,6 +4,19 @@ import { useTranslation } from "./language-provider"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Building2, Users, CheckCircle, Trophy } from 'lucide-react'
+import { useEffect, useState } from "react"
+
+// sanity
+import { client } from "@/lib/sanity"
+
+type AboutData = {
+  heading: string
+  text: string
+  info1: string
+  info2: string
+  info3: string
+  info4: string
+}
 
 export function About() {
   const { t } = useTranslation()
@@ -11,6 +24,21 @@ export function About() {
     triggerOnce: true,
     threshold: 0.1,
   })
+  
+  const [aboutData, setAboutData] = useState<AboutData | null>(null)
+
+  useEffect(() => {
+    client.fetch(
+      `*[_type == "about"][0]{
+        heading,
+        text,
+        info1,
+        info2,
+        info3,
+        info4
+      }`
+    ).then(setAboutData)
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -72,10 +100,10 @@ export function About() {
           className="max-w-4xl mx-auto text-center mb-16"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
-            {t("about.title")}
+            {aboutData?.heading || t("about.title")}
           </motion.h2>
           <motion.p variants={itemVariants} className="text-zinc-600">
-            {t("about.description")}
+            {aboutData?.text || t("about.description")}
           </motion.p>
         </motion.div>
 

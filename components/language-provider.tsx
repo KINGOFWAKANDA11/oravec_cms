@@ -31,6 +31,10 @@ const translations: Translations = {
     en: "Speak with me",
     sk: "Kontaktujte ma",
   },
+  "nav.contact": {
+    en: "Contact",
+    sk: "Kontakt",
+  },
   "nav.education": {
     en: "Education",
     sk: "Vzdelávanie",
@@ -474,6 +478,36 @@ const translations: Translations = {
     sk: "Pomoc s právnymi aspektmi transakcií s nehnuteľnosťami vrátane kontroly zmlúv a overenia súladu s predpismi.",
   },
 
+  //free package
+  "services.free.first": {
+    "en": "Property analysis",
+    "sk": "Analýza nehnuteľnosti"
+  },
+  "services.free.second": {
+    "en": "Good preparation is the foundation!",
+    "sk": "Dobrá príprava je základ!"
+  },
+  "services.free.third": {
+    "en": "Initial basic property analysis",
+    "sk": "Úvodná základná analýza nehnuteľnosti"
+  },
+  "services.free.fift": {
+    "en": "I will verify the ownership status listed in the land registry.",
+    "sk": "Overím stav vlastníckych vzťahov na liste vlastníctva."
+  },
+  "services.free.sixt": {
+    "en": "I will assess if the plot has access and check its potential use according to the zoning plan (if available).",
+    "sk": "Posúdim, či je na pozemok prístup a zistím možnosti využitia v zmysle územného plánu (ak je vypracovaný)."
+  },
+  "services.free.seventh": {
+    "en": "You will receive a clear recommendation on whether the project is promising or not.",
+    "sk": "ískate jasné odporúčanie, či je projekt perspektívny alebo nie."
+  },
+  "services.free.eight": {
+    en: "Free",
+    sk: "Zdarma",
+  },
+
   // Services page
   "services.mainTitle": {
     en: "Real Estate Settlement Services",
@@ -601,6 +635,10 @@ const translations: Translations = {
     en: "Premium Package",
     sk: "Individuálna spolupráca",
   },
+  "services.premium.price": {
+    en: "Individual pricing",
+    sk: "Individuálna cena",
+  },
   "services.premium.feature1": {
     en: "Premium documentation package",
     sk: "Spoluúčasť na projekte s vopred dohodnutými podielmi",
@@ -629,6 +667,32 @@ const translations: Translations = {
     en: "Select Premium",
     sk: "Vybrať ponuku",
   },
+
+  "services.vzdelanie.title": {
+    en: "Learning course",
+    sk: "Vzdelávací kurz",
+  },
+  "services.vzdelanie.price": {
+    en: "Individual pricing",
+    sk: "Individuálna cena",
+  },
+  "services.vzdelanie.feature1": {
+    en: "Intense course with professional",
+    sk: "Intenzívne školenie pod vedením odborníka",
+  },
+  "services.vzdelanie.feature2": {
+    en: "Practical exercises and studies",
+    sk: "Praktické cvičenia a prípadové štúdie",
+  },
+  "services.vzdelanie.feature3": {
+    en: "Certificate",
+    sk: "Osvedčenie o absolvovaní",
+  },
+  "services.vzdelanie.vybrat": {
+    en: "Select course",
+    sk: "Zvoliť kurz",
+  },
+
 
   // References
   "references.title": {
@@ -754,6 +818,11 @@ const translations: Translations = {
   "contact.info.hours.value": {
     en: "Monday - Friday: 9:00 AM - 5:00 PM",
     sk: "Pondelok - Piatok: 9:00 - 17:00",
+  },
+
+  "footer.hodnota": {
+    en: "Professional property settlement",
+    sk: "Profesionálne vysporiadanie majetku",
   },
 
   // Footer

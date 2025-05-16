@@ -9,9 +9,33 @@ import { ArrowRight, Home, FileText, Key, Building, Landmark, MapPin, Briefcase,
 import { TypeAnimation } from "react-type-animation"
 import { useEffect, useState } from "react"
 
+// sanity
+import { client } from "@/lib/sanity"
+import { urlFor } from "@/lib/sanity"
+
 export function Hero() {
+  type HeroData = {
+    titleImage?: any
+  }
+
   const { t } = useTranslation()
   const [mounted, setMounted] = useState(false)
+  const [data, setData] = useState<HeroData | null>(null)
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await client.fetch(`*[_type == "hero"][0]{
+  titleImage {
+    asset->{
+      _id,
+      url
+    }
+  }
+}`)
+      setData(result)
+    }
+    fetchData()
+  }, [])
 
   useEffect(() => {
     setMounted(true)
@@ -121,13 +145,16 @@ export function Hero() {
 
               {/* The image itself */}
               <div className="relative w-full h-full">
-                <Image
-                  src="/profile2.png"
-                  alt="Ľub Oravec"
-                  fill
-                  className="object-cover object-top scale-[1.2] translate-y-5"
-                  priority
-                />
+                {data?.titleImage?.asset?.url && (
+                  <Image
+                    src={data.titleImage.asset.url}
+                    alt="Hero Image"
+                    width={400}
+                    height={200}
+                    className="object-cover object-top scale-[1.2] translate-y-5"
+                    priority
+                  />
+                )}
               </div>
             </div>
 
@@ -218,26 +245,26 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 3, duration: 0.5 }}
-  className="mb-8 sm:mb-12"
->
-  <Button
-    asChild
-    className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg h-auto group w-full sm:w-auto"
-  >
-    <Link href="/contact">
-      {t("hero.cta")}
-      <motion.div
-        animate={{ x: [0, 5, 0] }}
-        transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 2 }}
-      >
-        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-      </motion.div>
-    </Link>
-  </Button>
-</motion.div>
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 3, duration: 0.5 }}
+              className="mb-8 sm:mb-12"
+            >
+              <Button
+                asChild
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg h-auto group w-full sm:w-auto"
+              >
+                <Link href="/contact">
+                  {t("hero.cta")}
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 2 }}
+                  >
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </motion.div>
+                </Link>
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Floating icons in a half-circle - desktop only */}
@@ -356,14 +383,16 @@ export function Hero() {
           className="relative"
           style={{ height: "100%" }}
         >
-          <Image
-            src="/profile2.png"
-            alt="Ľub Oravec"
-            width={600}
-            height={1000}
-            className="h-full w-auto object-contain object-bottom max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-none"
-            priority
-          />
+          {data?.titleImage && (
+            <Image
+              src={urlFor(data.titleImage).url()}
+              alt="Hero Image"
+              width={563}
+              height={200}
+              className="object-cover object-top scale-[1.2] translate-y-5"
+              priority
+            />
+          )}
         </motion.div>
       </div>
 

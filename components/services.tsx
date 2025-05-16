@@ -140,16 +140,16 @@ export function Services() {
         <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center flex flex-col gap-4 mb-8">
           <div className="mb-8">{t("services.choosePackage")}</div>
           <div className="w-full mx-auto p-6 space-y-6 rounded-2xl shadow-2xl border border-zinc-200">
-            <h2 className="text-xl font-bold text-gray-800">Analýza nehnuteľnosti</h2>
-            <p className="italic text-emerald-500">„Dobrá príprava je základ!“</p>
-            <h3 className="font-semibold text-gray-700">Úvodná základná analýza nehnuteľnosti</h3>
-            <ul className="text-sm pl-5 space-y-1 text-gray-700">
-              <li>Overím stav vlastníckych vzťahov na liste vlastníctva.</li>
-              <li>Posúdim, či je na pozemok prístup a zistím možnosti využitia v zmysle územného plánu (ak je vypracovaný).</li>
-              <li>Získate jasné odporúčanie, či je projekt perspektívny alebo nie.</li>
-            </ul>
+          <h2 className="text-xl font-bold text-gray-800">{t("services.free.first")}</h2>
+    <p className="italic text-emerald-500">„{t("services.free.second")}“</p>
+    <h3 className="font-semibold text-gray-700">{t("services.free.third")}</h3>
+    <ul className="text-sm pl-5 space-y-1 text-gray-700">
+      <li>{t("services.free.fift")}</li>
+      <li>{t("services.free.sixt")}</li>
+      <li>{t("services.free.seventh")}</li>
+    </ul>
             <div className="max-w-64 mx-auto">
-              <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600">Zdarma</p>
+              <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600">{t("services.free.eight")}</p>
             </div>
           </div>
         </motion.h3>
@@ -289,7 +289,7 @@ export function Services() {
             </div>
             <div className="p-6 flex-grow">
               <div className="text-center mb-6">
-                <div className="text-2xl font-bold text-zinc-900">Individuálna cena</div>
+                <div className="text-2xl font-bold text-zinc-900">{t("services.premium.price")}</div>
               </div>
               <div className="space-y-3 mb-6">
                 <div className="flex items-start">
@@ -335,32 +335,32 @@ export function Services() {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
                       <Book className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">Vzdelávací kurz</h3>
+                    <h3 className="text-2xl font-bold text-white">{t("services.vzdelanie.title")}</h3>
                   </div>
                 </div>
               </div>
               <div className="p-6 flex-grow">
                 <div className="text-center mb-6">
-                  <div className="text-2xl font-bold text-zinc-900">Individuálna cena</div>
+                  <div className="text-2xl font-bold text-zinc-900">{t("services.vzdelanie.price")}</div>
                 </div>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <p className="text-zinc-700">Intenzívne školenie pod vedením odborníka</p>
+                    <p className="text-zinc-700">{t("services.vzdelanie.feature1")}</p>
                   </div>
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <p className="text-zinc-700">Praktické cvičenia a prípadové štúdie</p>
+                    <p className="text-zinc-700">{t("services.vzdelanie.feature2")}</p>
                   </div>
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <p className="text-zinc-700">Osvedčenie o absolvovaní</p>
+                    <p className="text-zinc-700">{t("services.vzdelanie.feature3")}</p>
                   </div>
                 </div>
               </div>
               <div className="p-6 pt-0">
                 <Button asChild className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
-                  <Link href="/contact?package=education">Zvoliť kurz</Link>
+                  <Link href="/contact?package=education">{t("services.vzdelanie.vybrat")}</Link>
                 </Button>
               </div>
             </motion.div>

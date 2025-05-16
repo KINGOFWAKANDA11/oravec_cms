@@ -1,11 +1,14 @@
 "use client"
 
 import { useTranslation } from "./language-provider"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+
+import { client } from "@/lib/sanity"
+
 
 export function References() {
   const { t } = useTranslation()
@@ -14,46 +17,30 @@ export function References() {
     threshold: 0.1,
   })
 
-  // State for the testimonial slider
+  type Testimonial = {
+    _id: string
+    name: string
+    position?: string
+    testimonial: string
+  }
+
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
 
-  // Testimonials data
-  const testimonials = [
-    {
-      id: 1,
-      name: t("references.client1.name"),
-      position: t("references.client1.position"),
-      testimonial: t("references.client1.testimonial"),
-    },
-    {
-      id: 2,
-      name: t("references.client2.name"),
-      position: t("references.client2.position"),
-      testimonial: t("references.client2.testimonial"),
-    },
-    {
-      id: 3,
-      name: t("references.client3.name"),
-      position: t("references.client3.position"),
-      testimonial: t("references.client3.testimonial"),
-    },
-    {
-      id: 4,
-      name: "Peťa Žiaranová",
-      position: t("references.client1.position"),
-      testimonial:
-        "Pozemkové úpravy ma zaskočili. Nevedela som čo robiť. Lubo mi všetko vysvetlil a vďaka nemu máme dva skvelé pozemky na super mieste. Všetko prebehlo...",
-    },
-    {
-      id: 5,
-      name: "Roman Kružliak",
-      position: t("references.client2.position"),
-      testimonial:
-        "V Žiline som s Ľubom riešil dom s pozemkom. Vzťahy medzi spoluvlastníkmi boli zlé, súdili sa. Aj tak sa nám podarilo odkúpiť všetky podiely...",
-    },
-  ]
+  useEffect(() => {
+    async function fetchTestimonials() {
+      const result = await client.fetch(`*[_type == "review"] | order(_createdAt asc){
+  _id,
+  name,
+  position,
+  testimonial
+}`)
+      setTestimonials(result)
+    }
+    fetchTestimonials()
+  }, [])
 
   // Navigation functions
   const nextTestimonial = () => {
@@ -108,6 +95,9 @@ export function References() {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   }
+
+  console.log("Testimonials:", testimonials)
+ console.log("Current index:", currentIndex)
 
   return (
     <section id="references" className="py-24 bg-zinc-900 relative overflow-hidden">
@@ -188,32 +178,39 @@ export function References() {
         >
           {/* Testimonial slider */}
           <div className="relative overflow-hidden h-[300px] md:h-[250px]">
-            <motion.div
-              key={currentIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-              onAnimationComplete={() => setIsAnimating(false)}
-              className="bg-zinc-800 p-8 rounded-lg absolute w-full"
-            >
-              <Quote className="h-8 w-8 text-emerald-500 mb-4" />
-              <p className="text-zinc-300 mb-6 sm:text-lg text-sm">{testimonials[currentIndex].testimonial}</p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
-                  {testimonials[currentIndex].name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="text-white font-medium">{testimonials[currentIndex].name}</h4>
-                  <p className="text-zinc-400 text-sm">{testimonials[currentIndex].position}</p>
-                </div>
-              </div>
-            </motion.div>
+            
+
+              {testimonials.length > 0 && (
+                <motion.div
+                  key={testimonials[currentIndex]?._id ?? "no-id"}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 },
+                  }}
+                  onAnimationComplete={() => setIsAnimating(false)}
+                  className="bg-zinc-800 p-8 rounded-lg absolute w-full"
+                >
+                  <Quote className="h-8 w-8 text-emerald-500 mb-4" />
+                  <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
+                    {testimonials[currentIndex]?.testimonial}
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
+                      {testimonials[currentIndex]?.name?.charAt(0)}
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
+                      <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
           </div>
 
           {/* Navigation buttons */}
@@ -228,9 +225,8 @@ export function References() {
                     setIsAnimating(true)
                     setCurrentIndex(index)
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? "bg-emerald-500 w-6" : "bg-zinc-600 hover:bg-zinc-500"
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-emerald-500 w-6" : "bg-zinc-600 hover:bg-zinc-500"
+                    }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
               ))}
