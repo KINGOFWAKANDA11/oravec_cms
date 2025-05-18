@@ -151,7 +151,7 @@ export function Hero() {
                     alt="Hero Image"
                     width={400}
                     height={200}
-                    className="object-cover object-top scale-[1.2] translate-y-5"
+                    className="object-cover object-top scale-[1.2] translate-y-12"
                     priority
                   />
                 )}
@@ -387,9 +387,9 @@ export function Hero() {
             <Image
               src={urlFor(data.titleImage).url()}
               alt="Hero Image"
-              width={563}
+              width={500}
               height={200}
-              className="object-cover object-top scale-[1.2] translate-y-5"
+              className="object-cover object-top scale-[1.2] translate-y-36"
               priority
             />
           )}

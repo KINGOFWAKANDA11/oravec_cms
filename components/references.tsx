@@ -25,20 +25,28 @@ export function References() {
   }
 
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [loading, setLoading] = useState(true)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
     async function fetchTestimonials() {
-      const result = await client.fetch(`*[_type == "review"] | order(_createdAt asc){
-  _id,
-  name,
-  position,
-  testimonial
-}`)
-      setTestimonials(result)
+      try {
+        const result = await client.fetch(`*[_type == "review"] | order(_createdAt asc){
+          _id,
+          name,
+          position,
+          testimonial
+        }`)
+        setTestimonials(result)
+      } catch (error) {
+        console.error("Error fetching testimonials:", error)
+      } finally {
+        setLoading(false)
+      }
     }
+
     fetchTestimonials()
   }, [])
 
@@ -96,8 +104,6 @@ export function References() {
     visible: { opacity: 1, y: 0 },
   }
 
-  console.log("Testimonials:", testimonials)
- console.log("Current index:", currentIndex)
 
   return (
     <section id="references" className="py-24 bg-zinc-900 relative overflow-hidden">
@@ -155,64 +161,69 @@ export function References() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-  <motion.div
-    ref={ref}
-    variants={containerVariants}
-    initial="hidden"
-    animate={inView ? "visible" : "hidden"}
-    className="max-w-4xl mx-auto text-center mb-16"
-  >
-    <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-4">
-      {t("references.title")}
-    </motion.h2>
-    <motion.p variants={itemVariants} className="text-zinc-400">
-      {t("references.description")}
-    </motion.p>
-  </motion.div>
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-4">
+            {t("references.title")}
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-zinc-400">
+            {t("references.description")}
+          </motion.p>
+        </motion.div>
 
-  <motion.div
-    variants={containerVariants}
-    initial="hidden"
-    animate={inView ? "visible" : "hidden"}
-    className="max-w-4xl mx-auto relative"
-  >
-    {/* Testimonial + controls wrapper */}
-    <div className="flex flex-col items-stretch gap-1 relative">
-      {/* Testimonial card */}
-      <div className="relative overflow-visible transition-all duration-300">
-        {testimonials.length > 0 && (
-          <motion.div
-            key={testimonials[currentIndex]?._id ?? "no-id"}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-            }}
-            onAnimationComplete={() => setIsAnimating(false)}
-            className="bg-zinc-800 p-8 rounded-lg w-full"
-          >
-            <Quote className="h-8 w-8 text-emerald-500 mb-4" />
-            <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
-              {testimonials[currentIndex]?.testimonial}
-            </p>
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
-                {testimonials[currentIndex]?.name?.charAt(0)}
-              </div>
-              <div>
-                <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
-                <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
-              </div>
+        <motion.div
+  variants={containerVariants}
+  initial="hidden"
+  animate={inView ? "visible" : "hidden"}
+  className="max-w-4xl mx-auto relative"
+>
+  {/* Testimonial + controls wrapper */}
+  <div className="flex flex-col items-stretch gap-1 relative">
+    {/* Testimonial card */}
+    <div className="relative overflow-visible transition-all duration-300">
+      {loading ? (
+        <p className="text-white text-center">Načítavam referencie...</p>
+      ) : testimonials.length > 0 ? (
+        <motion.div
+          key={testimonials[currentIndex]?._id ?? "no-id"}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+          }}
+          onAnimationComplete={() => setIsAnimating(false)}
+          className="bg-zinc-800 p-8 rounded-lg w-full"
+        >
+          <Quote className="h-8 w-8 text-emerald-500 mb-4" />
+          <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
+            {testimonials[currentIndex]?.testimonial}
+          </p>
+          <div className="flex items-center">
+            <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
+              {testimonials[currentIndex]?.name?.charAt(0)}
             </div>
-          </motion.div>
-        )}
-      </div>
+            <div>
+              <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
+              <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <p className="text-white text-center">Žiadne referencie na zobrazenie.</p>
+      )}
+    </div>
 
-      {/* Controls */}
+    {/* Controls */}
+    {testimonials.length > 0 && (
       <div className="flex justify-between pt-1">
         <div className="flex items-center gap-2">
           {testimonials.map((_, index) => (
@@ -225,7 +236,9 @@ export function References() {
                 setCurrentIndex(index)
               }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "bg-emerald-500 w-6" : "bg-zinc-600 hover:bg-zinc-500"
+                index === currentIndex
+                  ? "bg-emerald-500 w-6"
+                  : "bg-zinc-600 hover:bg-zinc-500"
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
@@ -254,9 +267,10 @@ export function References() {
           </Button>
         </div>
       </div>
-    </div>
-  </motion.div>
-</div>
+    )}
+  </div>
+</motion.div>
+      </div>
     </section>
   )
 }
