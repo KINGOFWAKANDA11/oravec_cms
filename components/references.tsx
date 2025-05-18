@@ -155,107 +155,108 @@ export function References() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="max-w-4xl mx-auto text-center mb-16"
-        >
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {t("references.title")}
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-zinc-400">
-            {t("references.description")}
-          </motion.p>
-        </motion.div>
+  <motion.div
+    ref={ref}
+    variants={containerVariants}
+    initial="hidden"
+    animate={inView ? "visible" : "hidden"}
+    className="max-w-4xl mx-auto text-center mb-16"
+  >
+    <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-white mb-4">
+      {t("references.title")}
+    </motion.h2>
+    <motion.p variants={itemVariants} className="text-zinc-400">
+      {t("references.description")}
+    </motion.p>
+  </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="max-w-4xl mx-auto relative"
-        >
-          {/* Testimonial slider */}
-          <div className="relative overflow-hidden h-[300px] md:h-[250px]">
-            
-
-              {testimonials.length > 0 && (
-                <motion.div
-                  key={testimonials[currentIndex]?._id ?? "no-id"}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.2 },
-                  }}
-                  onAnimationComplete={() => setIsAnimating(false)}
-                  className="bg-zinc-800 p-8 rounded-lg absolute w-full"
-                >
-                  <Quote className="h-8 w-8 text-emerald-500 mb-4" />
-                  <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
-                    {testimonials[currentIndex]?.testimonial}
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
-                      {testimonials[currentIndex]?.name?.charAt(0)}
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
-                      <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-          </div>
-
-          {/* Navigation buttons */}
-          <div className="flex justify-between mt-8">
-            <div className="flex items-center gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    if (isAnimating) return
-                    setDirection(index > currentIndex ? 1 : -1)
-                    setIsAnimating(true)
-                    setCurrentIndex(index)
-                  }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-emerald-500 w-6" : "bg-zinc-600 hover:bg-zinc-500"
-                    }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
+  <motion.div
+    variants={containerVariants}
+    initial="hidden"
+    animate={inView ? "visible" : "hidden"}
+    className="max-w-4xl mx-auto relative"
+  >
+    {/* Testimonial + controls wrapper */}
+    <div className="flex flex-col items-stretch gap-1 relative">
+      {/* Testimonial card */}
+      <div className="relative overflow-visible transition-all duration-300">
+        {testimonials.length > 0 && (
+          <motion.div
+            key={testimonials[currentIndex]?._id ?? "no-id"}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
+            }}
+            onAnimationComplete={() => setIsAnimating(false)}
+            className="bg-zinc-800 p-8 rounded-lg w-full"
+          >
+            <Quote className="h-8 w-8 text-emerald-500 mb-4" />
+            <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
+              {testimonials[currentIndex]?.testimonial}
+            </p>
+            <div className="flex items-center">
+              <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
+                {testimonials[currentIndex]?.name?.charAt(0)}
+              </div>
+              <div>
+                <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
+                <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={prevTestimonial}
-                className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
-                disabled={isAnimating}
-              >
-                <ChevronLeft className="h-4 w-4" />
-                <span className="sr-only">Previous testimonial</span>
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={nextTestimonial}
-                className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
-                disabled={isAnimating}
-              >
-                <ChevronRight className="h-4 w-4" />
-                <span className="sr-only">Next testimonial</span>
-              </Button>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
       </div>
+
+      {/* Controls */}
+      <div className="flex justify-between pt-1">
+        <div className="flex items-center gap-2">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                if (isAnimating) return
+                setDirection(index > currentIndex ? 1 : -1)
+                setIsAnimating(true)
+                setCurrentIndex(index)
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-emerald-500 w-6" : "bg-zinc-600 hover:bg-zinc-500"
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={prevTestimonial}
+            className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
+            disabled={isAnimating}
+          >
+            <ChevronLeft className="h-4 w-4" />
+            <span className="sr-only">Previous testimonial</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={nextTestimonial}
+            className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
+            disabled={isAnimating}
+          >
+            <ChevronRight className="h-4 w-4" />
+            <span className="sr-only">Next testimonial</span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+</div>
     </section>
   )
 }
