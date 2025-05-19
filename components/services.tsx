@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useTranslation } from "./language-provider"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield, Book } from "lucide-react"
+import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield, Book, Layers2 } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { client } from "@/lib/sanity"
@@ -206,7 +206,7 @@ export function Services() {
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
                   <div className="text-center p-6">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                      <Icon className="h-8 w-8 text-white" />
+                      <Layers2 className="text-white"/>
                     </div>
                     <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                   </div>
