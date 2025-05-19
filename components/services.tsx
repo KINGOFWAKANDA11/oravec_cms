@@ -8,13 +8,39 @@ import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield, Book } from "lucide-react"
 import Image from "next/image"
+import { useEffect, useState } from "react"
+import { client } from "@/lib/sanity"
+import { Icon } from "@radix-ui/react-select"
+
+type CardData = {
+  _id: string
+  title: string
+  price: string
+  features: string[]
+  icon: string
+  imageUrl: string
+}
 
 export function Services() {
+  const [services, setServices] = useState<CardData[]>([])
   const { t } = useTranslation()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  useEffect(() => {
+    client.fetch(
+      `*[_type == "serviceCard"] | order(_createdAt asc){
+    _id,
+    title,
+    price,
+    features,
+    icon,
+    "imageUrl": image.asset->url
+  }`
+    ).then(setServices)
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -140,14 +166,14 @@ export function Services() {
         <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center flex flex-col gap-4 mb-8">
           <div className="mb-8">{t("services.choosePackage")}</div>
           <div className="w-full mx-auto p-6 space-y-6 rounded-2xl shadow-2xl border border-zinc-200">
-          <h2 className="text-xl font-bold text-gray-800">{t("services.free.first")}</h2>
-    <p className="italic text-emerald-500">„{t("services.free.second")}“</p>
-    <h3 className="font-semibold text-gray-700">{t("services.free.third")}</h3>
-    <ul className="text-sm pl-5 space-y-1 text-gray-700">
-      <li>{t("services.free.fift")}</li>
-      <li>{t("services.free.sixt")}</li>
-      <li>{t("services.free.seventh")}</li>
-    </ul>
+            <h2 className="text-xl font-bold text-gray-800">{t("services.free.first")}</h2>
+            <p className="italic text-emerald-500">„{t("services.free.second")}“</p>
+            <h3 className="font-semibold text-gray-700">{t("services.free.third")}</h3>
+            <ul className="text-sm pl-5 space-y-1 text-gray-700">
+              <li>{t("services.free.fift")}</li>
+              <li>{t("services.free.sixt")}</li>
+              <li>{t("services.free.seventh")}</li>
+            </ul>
             <div className="max-w-64 mx-auto">
               <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600">{t("services.free.eight")}</p>
             </div>
@@ -155,216 +181,61 @@ export function Services() {
         </motion.h3>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-center"
-        >
-          {/* Basic Package */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-emerald-300 transition-colors duration-300 flex flex-col h-full"
-          >
-            <div className="relative h-[200px]">
-              <Image
-                src="/images/service-settlement.jpg"
-                alt={t("services.basic.title")}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                    <Home className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">{t("services.basic.title")}</h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 flex-grow">
-              <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-zinc-900">1000€</div>
-                <p className="text-zinc-500">{t("services.basic.payment")}</p>
-              </div>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.basic.feature1")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.basic.feature2")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.basic.feature3")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.basic.feature4")}</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 pt-0">
-              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                <Link href="/contact?package=basic">{t("services.basic.select")}</Link>
-              </Button>
-            </div>
-          </motion.div>
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center items-center"
+      >
+        {services.map((service) => {
 
-          {/* Standard Package */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-lg shadow-xl overflow-hidden border-2 border-emerald-500 flex flex-col h-full relative"
-          >
-            <div className="absolute top-0 right-0 bg-emerald-500 text-white px-4 py-1 text-sm font-medium">
-              {t("services.standard.mostPopular")}
-            </div>
-            <div className="relative h-[200px]">
-              <Image
-                src="/images/service-expertise.jpg"
-                alt={t("services.standard.title")}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                    <Building className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">{t("services.standard.title")}</h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 flex-grow">
-              <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-zinc-900">8000€ +</div>
-                <p className="text-zinc-500">{t("services.basic.payment")}</p>
-              </div>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.standard.feature1")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.standard.feature2")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.standard.feature3")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.standard.feature4")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.standard.feature5")}</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 pt-0">
-              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                <Link href="/contact?package=standard">{t("services.standard.select")}</Link>
-              </Button>
-            </div>
-          </motion.div>
-
-          {/* Premium Package */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-emerald-300 transition-colors duration-300 flex flex-col h-full"
-          >
-            <div className="relative h-[200px]">
-              <Image src="/images/service-legal.jpg" alt={t("services.premium.title")} fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                    <Crown className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">{t("services.premium.title")}</h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 flex-grow">
-              <div className="text-center mb-6">
-                <div className="text-2xl font-bold text-zinc-900">{t("services.premium.price")}</div>
-              </div>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.premium.feature1")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.premium.feature2")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.premium.feature3")}</p>
-                </div>
-                <div className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
-                  <p className="text-zinc-700">{t("services.premium.feature4")}</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 pt-0">
-              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-                <Link href="/contact?package=premium">{t("services.premium.select")}</Link>
-              </Button>
-            </div>
-          </motion.div>
+          return (
             <motion.div
+              key={service._id}
               variants={itemVariants}
-              className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-purple-300 transition-colors duration-300 flex flex-col h-full relative max-w-sm"
+              className="bg-white rounded-lg shadow-lg overflow-hidden border border-zinc-200 hover:border-emerald-300 transition-colors duration-300 flex flex-col h-full"
             >
-              <div className="absolute top-0 right-0 bg-indigo-500 text-white px-4 py-1 text-sm font-medium">
-                Kurz
-              </div>
               <div className="relative h-[200px]">
-                <Image
-                  src="/images/course.jpg"
-                  alt="Vzdelávací kurz"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/80 to-indigo-800/40 flex items-center justify-center">
+                {service.imageUrl && (
+                  <Image
+                    src={service.imageUrl}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 to-emerald-800/40 flex items-center justify-center">
                   <div className="text-center p-6">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                      <Book className="h-8 w-8 text-white" />
+                      <Icon className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{t("services.vzdelanie.title")}</h3>
+                    <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                   </div>
                 </div>
               </div>
               <div className="p-6 flex-grow">
                 <div className="text-center mb-6">
-                  <div className="text-2xl font-bold text-zinc-900">{t("services.vzdelanie.price")}</div>
+                  <div className="text-2xl font-bold text-zinc-900">{service.price}</div>
                 </div>
                 <div className="space-y-3 mb-6">
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <p className="text-zinc-700">{t("services.vzdelanie.feature1")}</p>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <p className="text-zinc-700">{t("services.vzdelanie.feature2")}</p>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-purple-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <p className="text-zinc-700">{t("services.vzdelanie.feature3")}</p>
-                  </div>
+                  {service.features?.map((feature: string, i: number) => (
+                    <div key={i} className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                      <p className="text-zinc-700">{feature}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="p-6 pt-0">
-                <Button asChild className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
-                  <Link href="/contact?package=education">{t("services.vzdelanie.vybrat")}</Link>
+                <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
+                  <Link href={`/contact?package=${encodeURIComponent(service.title)}`}>
+                    {t("services.selectButton") ?? "Vybrať"}
+                  </Link>
                 </Button>
               </div>
             </motion.div>
-        </motion.div>
+          )
+        })}
+      </motion.div>
       </div>
     </section>
   )
