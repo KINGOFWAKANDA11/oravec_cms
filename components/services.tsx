@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useTranslation } from "./language-provider"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield, Book, Layers2 } from "lucide-react"
+import { Home, CheckCircle, X, Building, Crown, FileCheck, Clock, Shield, Book, Layers2, ArrowBigRight, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { client } from "@/lib/sanity"
@@ -228,7 +228,7 @@ export function Services() {
               <div className="p-6 pt-0">
                 <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
                   <Link href={`/contact?package=${encodeURIComponent(service.title)}`}>
-                    {t("services.selectButton") ?? "Vybrať"}
+                    <ArrowRight className="h-7 w-7 text-white"/>
                   </Link>
                 </Button>
               </div>

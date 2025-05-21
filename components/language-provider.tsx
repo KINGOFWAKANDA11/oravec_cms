@@ -692,6 +692,10 @@ const translations: Translations = {
     en: "Select course",
     sk: "Zvoliť kurz",
   },
+  "services.selectButton": {
+    en: "Select",
+    sk: "Vybrať",
+  },
 
 
   // References
