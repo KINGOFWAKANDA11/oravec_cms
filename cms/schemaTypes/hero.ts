@@ -7,6 +7,12 @@ export default {
       name: "titleImage",
       type: "image",
       title: "Fotka"
+    },
+    {
+      name: 'rotatingTexts',
+      title: 'Rotujúce texty',
+      type: 'array',
+      of: [{ type: 'string' }]
     }
   ],
 }

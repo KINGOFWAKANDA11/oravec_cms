@@ -16,6 +16,7 @@ import { urlFor } from "@/lib/sanity"
 export function Hero() {
   type HeroData = {
     titleImage?: any
+    rotatingTexts?: string[]
   }
 
   const { t } = useTranslation()
@@ -30,7 +31,8 @@ export function Hero() {
       _id,
       url
     }
-  }
+  },
+  rotatingTexts
 }`)
       setData(result)
     }
@@ -224,24 +226,15 @@ export function Hero() {
               transition={{ delay: 2.5, duration: 0.8 }}
               className="flex flex-wrap items-center text-lg text-emerald-400 font-medium min-h-[32px]"
             >
-              {mounted && (
-                <TypeAnimation
-                  sequence={[
-                    "Vysporiadanie nehnuteľností",
-                    2000,
-                    "Vysporiadanie pozemkov",
-                    2000,
-                    "Odhad hodnoty nehnuteľnosti",
-                    2000,
-                    "Kontrolu zmlúv",
-                    2000,
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  repeat={Number.POSITIVE_INFINITY}
-                  className="text-emerald-400"
-                />
-              )}
+              {mounted && data?.rotatingTexts && (
+  <TypeAnimation
+    sequence={data.rotatingTexts.flatMap(text => [text, 2000])}
+    wrapper="span"
+    speed={50}
+    repeat={Number.POSITIVE_INFINITY}
+    className="text-emerald-400"
+  />
+)}
             </motion.div>
 
             <motion.div
