@@ -33,7 +33,7 @@ export function References() {
   useEffect(() => {
     async function fetchTestimonials() {
       try {
-        const result = await client.fetch(`*[_type == "review"] | order(_createdAt asc){
+        const result = await client.fetch(`*[_type == "review"] | order(_createdAt desc){
           _id,
           name,
           position,
