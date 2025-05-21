@@ -9,6 +9,16 @@ export default {
       title: "Fotka"
     },
     {
+      name: 'title',
+      title: 'Hlavný nadpis',
+      type: 'string'
+    },
+    {
+      name: 'subtitle',
+      title: 'Podnadpis',
+      type: 'string'
+    },
+    {
       name: 'rotatingTexts',
       title: 'Rotujúce texty',
       type: 'array',

@@ -17,6 +17,8 @@ export function Hero() {
   type HeroData = {
     titleImage?: any
     rotatingTexts?: string[]
+    title?: string
+    subtitle?: string
   }
 
   const { t } = useTranslation()
@@ -32,6 +34,8 @@ export function Hero() {
       url
     }
   },
+  title,
+  subtitle,
   rotatingTexts
 }`)
       setData(result)
@@ -190,33 +194,35 @@ export function Hero() {
             className="space-y-6 lg:pr-12"
           >
             <div>
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="h-1 bg-emerald-500 mb-4 max-w-[100px]"
-              />
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-                {mounted && (
-                  <TypeAnimation
-                    sequence={[t("hero.title"), 1000]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={0}
-                    cursor={false}
-                    className="block"
-                  />
-                )}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.5, duration: 0.8 }}
-                  className="text-zinc-400 text-[40px]"
-                >
-                  {t("hero.subtitle")}
-                </motion.span>
-              </h1>
-            </div>
+  <motion.div
+    initial={{ width: 0 }}
+    animate={{ width: "100%" }}
+    transition={{ duration: 0.8, delay: 0.2 }}
+    className="h-1 bg-emerald-500 mb-4 max-w-[100px]"
+  />
+  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+    {mounted && data?.title && (
+      <TypeAnimation
+        sequence={[data.title, 1000]}
+        wrapper="span"
+        speed={50}
+        repeat={0}
+        cursor={false}
+        className="block"
+      />
+    )}
+    {data?.subtitle && (
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="text-zinc-400 text-[40px]"
+      >
+        {data.subtitle}
+      </motion.span>
+    )}
+  </h1>
+</div>
 
 
             {/* Typing animation for services */}
@@ -227,14 +233,14 @@ export function Hero() {
               className="flex flex-wrap items-center text-lg text-emerald-400 font-medium min-h-[32px]"
             >
               {mounted && data?.rotatingTexts && (
-  <TypeAnimation
-    sequence={data.rotatingTexts.flatMap(text => [text, 2000])}
-    wrapper="span"
-    speed={50}
-    repeat={Number.POSITIVE_INFINITY}
-    className="text-emerald-400"
-  />
-)}
+                <TypeAnimation
+                  sequence={data.rotatingTexts.flatMap(text => [text, 2000])}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Number.POSITIVE_INFINITY}
+                  className="text-emerald-400"
+                />
+              )}
             </motion.div>
 
             <motion.div
