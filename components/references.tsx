@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { client } from "@/lib/sanity"
 
 
-export function References() {
+function References() {
   const { t } = useTranslation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -273,4 +273,4 @@ export function References() {
       </div>
     </section>
   )
-}
+} export default References
