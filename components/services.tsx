@@ -227,37 +227,33 @@ export function Services() {
 
         {/* Pricing Packages */}
         {data?.levelsTitle && (
-  <>
-    <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center mb-8">
-      {data.levelsTitle}
-    </motion.h3>
+          <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center flex flex-col gap-4 mb-8">
+            <div className="mb-8">{data.levelsTitle}</div>
 
-    <motion.div variants={itemVariants} className="flex flex-col gap-8">
-      {data.collaborationLevels.map((level, index) => (
-        <div
-          key={index}
-          className="w-full mx-auto p-6 space-y-6 rounded-2xl shadow-2xl border border-zinc-200"
-        >
-          <h2 className="text-xl font-bold text-gray-800">{level.title}</h2>
-          <p className="italic text-emerald-500">„{level.quote}“</p>
-          <PortableText
-            value={level.description}
-            components={{
-              block: {
-                normal: ({ children }) => <p className="text-gray-700">{children}</p>,
-              },
-            }}
-          />
-          <div className="max-w-64 mx-auto">
-            <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600 text-center">
-              {level.label}
-            </p>
-          </div>
-        </div>
-      ))}
-    </motion.div>
-  </>
-)}
+            {data.collaborationLevels.map((level, index) => (
+              <div
+                key={index}
+                className="w-full mx-auto p-6 space-y-6 rounded-2xl shadow-2xl border border-zinc-200"
+              >
+                <h2 className="text-xl font-bold text-gray-800">{level.title}</h2>
+                <p className="italic text-emerald-500">„{level.quote}“</p>
+                <PortableText
+                  value={level.description}
+                  components={{
+                    block: {
+                      normal: ({ children }) => <p className="text-gray-700">{children}</p>,
+                    },
+                  }}
+                />
+                <div className="max-w-64 mx-auto">
+                  <p className="border-2 border-emerald-600 rounded-xl font-semibold text-green-600 text-center">
+                    {level.label}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.h3>
+        )}
 
         <motion.div
           variants={containerVariants}
