@@ -10,8 +10,9 @@ export default {
       },
       {
         name: 'text',
+        type: 'array',
         title: 'Text',
-        type: 'string',
+        of: [{ type: 'block' }],
       },
       {
         name: 'info1',

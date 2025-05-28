@@ -8,14 +8,23 @@ import { useEffect, useState } from "react"
 
 // sanity
 import { client } from "@/lib/sanity"
+import { PortableText, PortableTextBlock } from '@portabletext/react'
 
 type AboutData = {
   heading: string
-  text: string
+  text: PortableTextBlock[]
   info1: string
   info2: string
   info3: string
   info4: string
+}
+
+const portableComponents = {
+  block: {
+    normal: ({ children }: { children: React.ReactNode }) => (
+      <p className="text-center text-zinc-600 mb-4">{children}</p>
+    ),
+  },
 }
 
 export function About() {
@@ -102,9 +111,13 @@ export function About() {
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
             {aboutData?.heading || t("about.title")}
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-zinc-600">
-            {aboutData?.text || t("about.description")}
-          </motion.p>
+         <motion.div variants={itemVariants}>
+  {aboutData?.text ? (
+    <PortableText value={aboutData.text} components={portableComponents} />
+  ) : (
+    <p className="text-center text-zinc-600">{t("about.description")}</p>
+  )}
+</motion.div>
         </motion.div>
 
         <motion.div
