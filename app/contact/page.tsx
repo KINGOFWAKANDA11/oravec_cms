@@ -14,10 +14,10 @@ export default function ContactPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-300">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url("/dark-texture-background.jpg")' }}>
       <Navbar />
-      <main className="container mx-auto px-4 py-24">
-        <h1 className="text-4xl font-bold mb-12 text-center">Kontakt</h1>
+      <main className="container mx-auto px-4 py-24 sm:h-[1200px] h-auto">
+        <h1 className="text-4xl font-bold mb-12 text-slate-200 text-center">Kontakt</h1>
         <div className="grid md:grid-cols-2 gap-12">
           <div className="order-2 md:order-1">
             <ContactInfo />

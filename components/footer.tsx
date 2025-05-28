@@ -31,14 +31,11 @@ export function Footer() {
             <h3 className="text-xl font-bold mb-4 text-emerald-500">Ľubo Oravec</h3>
             <p className="text-zinc-400 mb-4">{t("footer.hodnota")}</p>
             <div className="flex space-x-4">
-              <a href="#" className="text-zinc-400 hover:text-emerald-500 transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61574233910048" target="_blank" className="text-zinc-400 hover:text-emerald-500 transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-zinc-400 hover:text-emerald-500 transition-colors">
+              <a href="https://www.instagram.com/lubo_oravec/" target="_blank" className="text-zinc-400 hover:text-emerald-500 transition-colors">
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-zinc-400 hover:text-emerald-500 transition-colors">
-                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>

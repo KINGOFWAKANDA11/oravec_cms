@@ -12,6 +12,7 @@ import { useInView } from "react-intersection-observer"
 import { Send, CheckCircle } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { sendEmail } from "@/app/actions/sendEmail"
 
 export function ContactForm() {
   const { t } = useTranslation()
@@ -32,17 +33,6 @@ export function ContactForm() {
     }
   }, [searchParams])
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-  }
-
   return (
     <motion.div
       ref={ref}
@@ -54,46 +44,60 @@ export function ContactForm() {
       {isSubmitted ? (
         <div className="text-center py-12">
           <CheckCircle className="h-16 w-16 text-emerald-500 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-zinc-900 mb-2">Thank you for your message!</h3>
-          <p className="text-zinc-600">I will get back to you as soon as possible.</p>
+          <h3 className="text-2xl font-bold text-zinc-900 mb-2">Ďakujem za Vašu správu!</h3>
+          <p className="text-zinc-600">Ozvem sa Vám čo najskôr</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form className="space-y-6" onSubmit={async (e) => {
+          e.preventDefault()
+          setIsSubmitting(true)
+
+          const formData = new FormData(e.currentTarget)
+          formData.append("balik", selectedPackage)
+          try {
+            await sendEmail(formData)
+            setIsSubmitted(true)
+          } catch (error) {
+            console.error('Failed to send email:', error)
+          }
+      
+          setIsSubmitting(false)
+        }}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-zinc-700 mb-1">
               {t("contact.form.name")}
             </label>
-            <Input id="name" type="text" required className="w-full bg-white text-zinc-900 border-zinc-200" />
+            <Input id="name" name="name" type="text" required className="w-full bg-white text-zinc-900 border-zinc-200" />
           </div>
 
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-zinc-700 mb-1">
               {t("contact.form.email")}
             </label>
-            <Input id="email" type="email" required className="w-full bg-white text-zinc-900 border-zinc-200" />
+            <Input id="email" name="email" type="email" required className="w-full bg-white text-zinc-900 border-zinc-200" />
           </div>
 
           <div>
             <label htmlFor="phone" className="block text-sm font-medium text-zinc-700 mb-1">
               {t("contact.form.phone")}
             </label>
-            <Input id="phone" type="tel" className="w-full bg-white text-zinc-900 border-zinc-200" />
+            <Input id="number" name="number" type="tel" className="w-full bg-white text-zinc-900 border-zinc-200" />
           </div>
 
           <div>
             <label htmlFor="package" className="block text-sm font-medium text-zinc-700 mb-1">
               {t("contact.form.packageLabel")}
             </label>
-            <Select value={selectedPackage} onValueChange={setSelectedPackage}>
+            <Select name="balik" value={selectedPackage} onValueChange={setSelectedPackage}>
               <SelectTrigger className="w-full bg-white text-zinc-900 border-zinc-200">
                 <SelectValue placeholder={t("contact.form.packagePlaceholder")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="none">{t("contact.form.noPackage")}</SelectItem>
-                <SelectItem value="basic">{t("contact.form.basicPackage")}</SelectItem>
-                <SelectItem value="standard">{t("contact.form.standardPackage")}</SelectItem>
-                <SelectItem value="premium">{t("contact.form.premiumPackage")}</SelectItem>
-                <SelectItem value="couse">{t("contact.form.course")}</SelectItem>
+                <SelectItem value="Žiadny">{t("contact.form.noPackage")}</SelectItem>
+                <SelectItem value="Rozšírená analýza">{t("contact.form.basicPackage")}</SelectItem>
+                <SelectItem value="Osobný mentoring">{t("contact.form.standardPackage")}</SelectItem>
+                <SelectItem value="Individuálna spolupráca">{t("contact.form.premiumPackage")}</SelectItem>
+                <SelectItem value="Vzdelávací kurz">{t("contact.form.course")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -102,7 +106,7 @@ export function ContactForm() {
             <label htmlFor="message" className="block text-sm font-medium text-zinc-700 mb-1">
               {t("contact.form.message")}
             </label>
-            <Textarea id="message" required rows={5} className="w-full bg-white text-zinc-900 border-zinc-200" />
+            <Textarea id="text" name="message" required rows={5} className="w-full bg-white text-zinc-900 border-zinc-200" />
           </div>
 
           <Button
