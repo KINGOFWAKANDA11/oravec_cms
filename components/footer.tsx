@@ -3,9 +3,25 @@
 import { useTranslation } from "./language-provider"
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Globe } from "lucide-react"
+import { useEffect, useState } from "react"
+
+import { client } from "@/lib/sanity"
+
+type ServiceCardTitle = {
+  _id: string
+  title: string
+}
 
 export function Footer() {
   const { t, language, setLanguage } = useTranslation()
+  const [serviceTitles, setServiceTitles] = useState<ServiceCardTitle[]>([])
+
+  useEffect(() => {
+    client
+      .fetch<ServiceCardTitle[]>(`*[_type == "serviceCard"]{_id, title}`)
+      .then(setServiceTitles)
+      .catch(console.error)
+  }, [])
 
   return (
     <footer className="bg-zinc-900 text-white py-12">
@@ -56,26 +72,13 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4">Služby</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/#services" className="text-zinc-400 hover:text-emerald-500 transition-colors">
-                  {t("services.settlement.title")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/#services" className="text-zinc-400 hover:text-emerald-500 transition-colors">
-                  {t("services.expertise.title")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/#services" className="text-zinc-400 hover:text-emerald-500 transition-colors">
-                  {t("services.consultation.title")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/#services" className="text-zinc-400 hover:text-emerald-500 transition-colors">
-                  {t("services.legal.title")}
-                </Link>
-              </li>
+              {serviceTitles.map((service) => (
+                <li key={service._id}>
+                  <Link href="/#services" className="text-zinc-400 hover:text-emerald-500 transition-colors">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
