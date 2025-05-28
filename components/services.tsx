@@ -241,6 +241,9 @@ export function Services() {
                   value={level.description}
                   components={{
                     block: {
+                      h1: ({ children }) => <h1 className="text-gray-700 text-2xl font-bold">{children}</h1>,
+                      h2: ({ children }) => <h2 className="text-gray-700 text-xl font-semibold">{children}</h2>,
+                      h3: ({ children }) => <h3 className="text-gray-700 text-lg font-medium">{children}</h3>,
                       normal: ({ children }) => <p className="text-gray-700">{children}</p>,
                     },
                   }}
