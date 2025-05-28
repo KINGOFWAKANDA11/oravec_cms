@@ -19,6 +19,7 @@ export function Hero() {
     rotatingTexts?: string[]
     title?: string
     subtitle?: string
+    quote?: string
   }
 
   const { t } = useTranslation()
@@ -36,7 +37,8 @@ export function Hero() {
   },
   title,
   subtitle,
-  rotatingTexts
+  rotatingTexts,
+  quote
 }`)
       setData(result)
     }
@@ -411,9 +413,9 @@ export function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 3.8 }}
-              className="text-white text-base sm:text-lg md:text-xl italic font-medium pl-10 sm:pl-12"
+              className="text-white text-base sm:text-lg md:text-2xl italic font-medium pl-10 sm:pl-12"
             >
-              {t("hero.quote")}
+              {data?.quote}
             </motion.p>
           </div>
         </div>

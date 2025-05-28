@@ -23,6 +23,11 @@ export default {
       title: 'Rotujúce texty',
       type: 'array',
       of: [{ type: 'string' }]
-    }
+    },
+    {
+      name: 'quote',
+      title: 'Citát',
+      type: 'string',
+    },
   ],
 }
