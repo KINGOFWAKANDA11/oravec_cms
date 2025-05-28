@@ -228,7 +228,7 @@ export function Services() {
         {/* Pricing Packages */}
         {data?.levelsTitle && (
           <motion.h3 variants={itemVariants} className="text-2xl font-bold text-center flex flex-col gap-4 mb-8">
-            <div className="mb-8">{data.levelsTitle}</div>
+            <div className="mb-8 text-gray-700">{data.levelsTitle}</div>
 
             {data.collaborationLevels.map((level, index) => (
               <div
