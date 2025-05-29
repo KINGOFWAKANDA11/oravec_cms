@@ -376,7 +376,7 @@ export function Hero() {
       </div>
 
       {/* Person image - positioned more toward the middle - desktop only */}
-      <div className="absolute right-[5%] lg:right-[25%] bottom-0 z-20 h-[90%] lg:h-[95%] hidden md:flex items-end">
+      <div className="absolute right-[5%] lg:right-[10%] bottom-0 z-20 h-[90%] lg:h-[95%] hidden md:flex items-end">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
