@@ -65,14 +65,6 @@ function References() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
   }
 
-  // Auto-advance the slider
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      nextTestimonial()
-    }, 6000)
-    return () => clearTimeout(timer)
-  }, [currentIndex])
-
   // Animation variants
   const slideVariants = {
     enter: (direction: number) => ({
@@ -177,99 +169,100 @@ function References() {
         </motion.div>
 
         <motion.div
-  variants={containerVariants}
-  initial="hidden"
-  animate={inView ? "visible" : "hidden"}
-  className="max-w-4xl mx-auto relative"
->
-  {/* Testimonial + controls wrapper */}
-  <div className="flex flex-col items-stretch gap-1 relative">
-    {/* Testimonial card */}
-    <div className="relative overflow-visible transition-all duration-300">
-      {loading ? (
-        <p className="text-white text-center">Načítavam referencie...</p>
-      ) : testimonials.length > 0 ? (
-        <motion.div
-          key={testimonials[currentIndex]?._id ?? "no-id"}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 },
-          }}
-          onAnimationComplete={() => setIsAnimating(false)}
-          className="bg-zinc-800 p-8 rounded-lg w-full"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto relative"
         >
-          <Quote className="h-8 w-8 text-emerald-500 mb-4" />
-          <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
-            {testimonials[currentIndex]?.testimonial}
-          </p>
-          <div className="flex items-center">
-            <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
-              {testimonials[currentIndex]?.name?.charAt(0)}
+          {/* Testimonial + controls wrapper */}
+          <div className="flex flex-col items-stretch gap-1 relative">
+            {/* Testimonial card */}
+            <div className="relative overflow-visible transition-all duration-300">
+              {loading ? (
+                <p className="text-white text-center">Načítavam referencie...</p>
+              ) : testimonials.length > 0 ? (
+                <AnimatePresence mode="wait" initial={false} custom={direction}>
+                  <motion.div
+                    key={testimonials[currentIndex]?._id ?? "no-id"}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: "spring", stiffness: 300, damping: 30 },
+                      opacity: { duration: 0.2 },
+                    }}
+                    onAnimationComplete={() => setIsAnimating(false)}
+                    className="bg-zinc-800 p-8 rounded-lg w-full"
+                  >
+                    <Quote className="h-8 w-8 text-emerald-500 mb-4" />
+                    <p className="text-zinc-300 mb-6 sm:text-lg text-sm">
+                      {testimonials[currentIndex]?.testimonial}
+                    </p>
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-emerald-600 rounded-full mr-4 flex items-center justify-center text-white font-bold">
+                        {testimonials[currentIndex]?.name?.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
+                        <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <p className="text-white text-center">Žiadne referencie na zobrazenie.</p>
+              )}
             </div>
-            <div>
-              <h4 className="text-white font-medium">{testimonials[currentIndex]?.name}</h4>
-              <p className="text-zinc-400 text-sm">{testimonials[currentIndex]?.position}</p>
-            </div>
+
+            {/* Controls */}
+            {testimonials.length > 0 && (
+              <div className="flex justify-between pt-1">
+                <div className="flex items-center gap-2">
+                  {testimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        if (isAnimating) return
+                        setDirection(index > currentIndex ? 1 : -1)
+                        setIsAnimating(true)
+                        setCurrentIndex(index)
+                      }}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                          ? "bg-emerald-500 w-6"
+                          : "bg-zinc-600 hover:bg-zinc-500"
+                        }`}
+                      aria-label={`Go to testimonial ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={prevTestimonial}
+                    className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
+                    disabled={isAnimating}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    <span className="sr-only">Previous testimonial</span>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={nextTestimonial}
+                    className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
+                    disabled={isAnimating}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                    <span className="sr-only">Next testimonial</span>
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
-      ) : (
-        <p className="text-white text-center">Žiadne referencie na zobrazenie.</p>
-      )}
-    </div>
-
-    {/* Controls */}
-    {testimonials.length > 0 && (
-      <div className="flex justify-between pt-1">
-        <div className="flex items-center gap-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                if (isAnimating) return
-                setDirection(index > currentIndex ? 1 : -1)
-                setIsAnimating(true)
-                setCurrentIndex(index)
-              }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "bg-emerald-500 w-6"
-                  : "bg-zinc-600 hover:bg-zinc-500"
-              }`}
-              aria-label={`Go to testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={prevTestimonial}
-            className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
-            disabled={isAnimating}
-          >
-            <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only">Previous testimonial</span>
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={nextTestimonial}
-            className="border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-white"
-            disabled={isAnimating}
-          >
-            <ChevronRight className="h-4 w-4" />
-            <span className="sr-only">Next testimonial</span>
-          </Button>
-        </div>
-      </div>
-    )}
-  </div>
-</motion.div>
       </div>
     </section>
   )

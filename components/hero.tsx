@@ -398,7 +398,7 @@ export function Hero() {
       </div>
 
       {/* Green accent bar with animated quote */}
-      <div className="absolute bottom-0 left-0 right-0 bg-sage-500 py-6 sm:py-8 z-10">
+      <div className="absolute bottom-0 left-0 right-0 bg-sage-500 py-6 sm:py-8 z-[99999]">
         <div className="container mx-auto px-4 relative">
           <div className="flex items-center">
             <motion.div
